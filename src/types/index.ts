@@ -28,7 +28,10 @@ export interface HowItWorksStep {
   description: string;
 }
 
+export type PlanSlug = "starter" | "growth" | "agency";
+
 export interface PricingTier {
+  slug: PlanSlug;
   name: string;
   price: number;
   billingPeriod: "month";
@@ -62,4 +65,36 @@ export interface ContactFormErrors {
   company?: string;
   interest?: string;
   message?: string;
+}
+
+export interface SignupFormValues {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  acceptTerms: boolean;
+}
+
+export interface SignupFormErrors {
+  fullName?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  acceptTerms?: string;
+}
+
+export interface LoginFormValues {
+  email: string;
+  password: string;
+}
+
+export interface LoginFormErrors {
+  email?: string;
+  password?: string;
+}
+
+export interface AuthUser {
+  name: string;
+  email: string;
+  plan: PlanSlug;
 }

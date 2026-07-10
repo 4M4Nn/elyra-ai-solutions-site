@@ -20,7 +20,10 @@ export const company = {
 };
 
 // The deployed SEO+AEO Agent app (login / dashboard).
-export const appUrl = "https://nexora-seo-agent-xi.vercel.app";
+export const appUrl = process.env.NEXT_PUBLIC_AGENT_URL || "https://nexora-seo-agent-xi.vercel.app";
+
+// The SEO+AEO Agent backend API, for future signup/login wiring.
+export const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://nexora-seo-backend.onrender.com";
 
 export const socialLinks = [
   { platform: "linkedin", href: "https://linkedin.com/company/elyra-ai-solutions" },
@@ -142,10 +145,13 @@ export const howItWorks: HowItWorksStep[] = [
   },
 ];
 
+export const annualDiscountPercent = 20;
+
 export const pricingTiers: PricingTier[] = [
   {
+    slug: "starter",
     name: "Starter",
-    price: 49,
+    price: 2999,
     billingPeriod: "month",
     description: "For a single site that needs consistent AI-driven SEO and AEO monitoring.",
     features: [
@@ -156,12 +162,13 @@ export const pricingTiers: PricingTier[] = [
       "Search Console & GA4 integration",
       "Email support",
     ],
-    ctaLabel: "Request early access",
+    ctaLabel: "Subscribe Now",
     highlighted: false,
   },
   {
+    slug: "growth",
     name: "Growth",
-    price: 149,
+    price: 6999,
     billingPeriod: "month",
     description: "For growing teams managing several brands or a larger content footprint.",
     features: [
@@ -173,12 +180,13 @@ export const pricingTiers: PricingTier[] = [
       "Role-based team access",
       "Priority email support",
     ],
-    ctaLabel: "Request early access",
+    ctaLabel: "Subscribe Now",
     highlighted: true,
   },
   {
+    slug: "agency",
     name: "Agency",
-    price: 399,
+    price: 14999,
     billingPeriod: "month",
     description: "Multi-tenant workspace management built for agencies serving many clients.",
     features: [
@@ -190,7 +198,7 @@ export const pricingTiers: PricingTier[] = [
       "Role-based team & client access",
       "Dedicated onboarding support",
     ],
-    ctaLabel: "Talk to sales",
+    ctaLabel: "Subscribe Now",
     highlighted: false,
   },
 ];
@@ -199,7 +207,7 @@ export const pricingFAQ: FAQItem[] = [
   {
     question: "Is Elyra SEO+AEO Agent available now?",
     answer:
-      "Elyra SEO+AEO Agent is in active development with early access opening on a rolling basis. Request early access from the pricing page and our team will reach out with onboarding details.",
+      "Yes. Elyra SEO+AEO Agent is live. Choose a plan on the pricing page and create your account in a few minutes.",
   },
   {
     question: "What is Answer Engine Optimization (AEO)?",
@@ -214,7 +222,7 @@ export const pricingFAQ: FAQItem[] = [
   {
     question: "Do you offer annual billing?",
     answer:
-      "Monthly pricing is shown above. Annual billing with a discount is available for Growth and Agency plans — mention it when you request early access and our team will include it in your onboarding.",
+      "Yes. Toggle to annual billing on the pricing page for a 20% discount on every plan, billed once a year.",
   },
   {
     question: "Can I switch plans later?",

@@ -23,6 +23,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { appUrl, company, products } from "@/lib/data";
+import { clearAuthUser } from "@/lib/auth";
+import { useAuthUser } from "@/hooks/useAuthUser";
 
 const primaryLinks = [
   { label: "Pricing", href: "/pricing" },
@@ -32,6 +34,7 @@ const primaryLinks = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const user = useAuthUser();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-white/80 backdrop-blur-md">
@@ -106,15 +109,28 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button asChild variant="ghost">
-            <a href={`${appUrl}/login`}>Login</a>
-          </Button>
-          <Button asChild variant="default">
-            <Link href="/contact">
-              Get started
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+          {user ? (
+            <>
+              <Button asChild variant="ghost">
+                <a href={appUrl}>Dashboard</a>
+              </Button>
+              <Button variant="outline" onClick={() => clearAuthUser()}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button asChild variant="ghost">
+                <Link href="/login">Login</Link>
+              </Button>
+              <Button asChild variant="default">
+                <Link href="/signup">
+                  Sign up
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
@@ -154,19 +170,36 @@ export function Navbar() {
               ))}
             </nav>
             <div className="mt-4 flex flex-col gap-2">
-              <SheetClose asChild>
-                <Button asChild variant="outline" className="w-full">
-                  <a href={`${appUrl}/login`}>Login</a>
-                </Button>
-              </SheetClose>
-              <SheetClose asChild>
-                <Button asChild className="w-full">
-                  <Link href="/contact">
-                    Get started
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </Button>
-              </SheetClose>
+              {user ? (
+                <>
+                  <SheetClose asChild>
+                    <Button asChild variant="outline" className="w-full">
+                      <a href={appUrl}>Dashboard</a>
+                    </Button>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button className="w-full" onClick={() => clearAuthUser()}>
+                      Logout
+                    </Button>
+                  </SheetClose>
+                </>
+              ) : (
+                <>
+                  <SheetClose asChild>
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href="/login">Login</Link>
+                    </Button>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Button asChild className="w-full">
+                      <Link href="/signup">
+                        Sign up
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </SheetClose>
+                </>
+              )}
             </div>
           </SheetContent>
         </Sheet>
