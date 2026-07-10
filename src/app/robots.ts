@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://elyra-ai-solutions.vercel.app/sitemap.xml",
+    sitemap: "https://elyra-ai-solutions-site.vercel.app/sitemap.xml",
   };
 }

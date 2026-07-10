@@ -17,7 +17,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://elyra-ai-solutions.vercel.app"),
+  metadataBase: new URL("https://elyra-ai-solutions-site.vercel.app"),
   title: {
     default: `${company.name} — AI Agent Products for Growing Businesses`,
     template: `%s — ${company.shortName}`,

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://elyra-ai-solutions.vercel.app";
+const baseUrl = "https://elyra-ai-solutions-site.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
