@@ -22,7 +22,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { company, products } from "@/lib/data";
+import { appUrl, company, products } from "@/lib/data";
 
 const primaryLinks = [
   { label: "Pricing", href: "/pricing" },
@@ -106,6 +106,9 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          <Button asChild variant="ghost">
+            <a href={`${appUrl}/login`}>Login</a>
+          </Button>
           <Button asChild variant="default">
             <Link href="/contact">
               Get started
@@ -150,14 +153,21 @@ export function Navbar() {
                 </SheetClose>
               ))}
             </nav>
-            <SheetClose asChild>
-              <Button asChild className="w-full">
-                <Link href="/contact">
-                  Get started
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </SheetClose>
+            <div className="mt-4 flex flex-col gap-2">
+              <SheetClose asChild>
+                <Button asChild variant="outline" className="w-full">
+                  <a href={`${appUrl}/login`}>Login</a>
+                </Button>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button asChild className="w-full">
+                  <Link href="/contact">
+                    Get started
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </SheetClose>
+            </div>
           </SheetContent>
         </Sheet>
       </div>

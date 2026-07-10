@@ -19,6 +19,9 @@ export const company = {
   address: "Remote-first · Serving clients worldwide",
 };
 
+// The deployed SEO+AEO Agent app (login / dashboard) — update once it's live on its real domain.
+export const appUrl = "https://app.elyra.ai";
+
 export const socialLinks = [
   { platform: "linkedin", href: "https://linkedin.com/company/elyra-ai-solutions" },
   { platform: "x", href: "https://x.com/elyraai" },
