@@ -5,17 +5,29 @@ import { useSearchParams } from "next/navigation";
 import { Loader2, Sparkles } from "lucide-react";
 
 import { appUrl } from "@/lib/data";
+import { takePendingTokens } from "@/lib/agentAuth";
 
 const REDIRECT_DELAY_MS = 3000;
+
+function resolveRedirectTarget(): string {
+  const tokens = takePendingTokens();
+  if (!tokens) return appUrl;
+  const params = new URLSearchParams({
+    access_token: tokens.access_token,
+    refresh_token: tokens.refresh_token,
+  });
+  return `${appUrl}/auth/callback?${params.toString()}`;
+}
 
 export function DashboardRedirect() {
   const searchParams = useSearchParams();
   const isNewSignup = searchParams.get("new") === "1";
   const [secondsLeft, setSecondsLeft] = useState(Math.ceil(REDIRECT_DELAY_MS / 1000));
+  const [target] = useState(resolveRedirectTarget);
 
   useEffect(() => {
     const redirectTimer = setTimeout(() => {
-      window.location.href = appUrl;
+      window.location.href = target;
     }, REDIRECT_DELAY_MS);
 
     const countdownTimer = setInterval(() => {
@@ -26,7 +38,7 @@ export function DashboardRedirect() {
       clearTimeout(redirectTimer);
       clearInterval(countdownTimer);
     };
-  }, []);
+  }, [target]);
 
   return (
     <div className="mx-auto flex max-w-md flex-col items-center gap-4 rounded-3xl border border-border bg-white px-8 py-14 text-center shadow-sm">
@@ -43,7 +55,7 @@ export function DashboardRedirect() {
         <Loader2 className="h-4 w-4 animate-spin" />
         Redirecting to your dashboard in {secondsLeft}s...
       </div>
-      <a href={appUrl} className="text-xs font-medium text-muted-foreground hover:text-foreground hover:underline">
+      <a href={target} className="text-xs font-medium text-muted-foreground hover:text-foreground hover:underline">
         Not redirected automatically? Click here.
       </a>
     </div>

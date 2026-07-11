@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { apiUrl } from "@/lib/data";
 import { setAuthUser } from "@/lib/auth";
+import { setPendingTokens } from "@/lib/agentAuth";
 import type { LoginFormErrors, LoginFormValues } from "@/types";
 
 const initialValues: LoginFormValues = {
@@ -34,6 +36,7 @@ export function LoginForm() {
   const router = useRouter();
   const [values, setValues] = useState<LoginFormValues>(initialValues);
   const [errors, setErrors] = useState<LoginFormErrors>({});
+  const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(field: keyof LoginFormValues, value: string) {
@@ -48,21 +51,41 @@ export function LoginForm() {
 
     const validationErrors = validate(values);
     setErrors(validationErrors);
+    setSubmitError("");
 
     if (Object.keys(validationErrors).length > 0) {
       return;
     }
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    setIsSubmitting(false);
+    try {
+      const res = await fetch(`${apiUrl}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: values.email, password: values.password }),
+      });
+      const data = await res.json();
 
-    setAuthUser({ name: values.email.split("@")[0], email: values.email, plan: "growth" });
-    router.push("/dashboard");
+      if (!res.ok) {
+        setSubmitError(res.status === 401 ? "Wrong email or password." : data.detail || "Could not log you in. Please try again.");
+        return;
+      }
+
+      setPendingTokens({ access_token: data.access_token, refresh_token: data.refresh_token });
+      setAuthUser({ name: data.user?.full_name || values.email.split("@")[0], email: values.email, plan: "growth" });
+      router.push("/dashboard");
+    } catch {
+      setSubmitError("Network error — please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <div className="rounded-2xl border border-border bg-white p-8 shadow-sm">
+      {submitError && (
+        <p className="mb-4 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{submitError}</p>
+      )}
       <form onSubmit={handleSubmit} noValidate>
         <div className="space-y-5">
           <div>

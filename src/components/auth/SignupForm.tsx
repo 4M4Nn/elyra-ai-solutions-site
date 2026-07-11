@@ -3,13 +3,12 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RazorpayCheckoutButton } from "@/components/checkout/RazorpayCheckoutButton";
-import { pricingTiers } from "@/lib/data";
+import { pricingTiers, apiUrl } from "@/lib/data";
 import { setAuthUser } from "@/lib/auth";
+import { setPendingTokens } from "@/lib/agentAuth";
 import type { PlanSlug, SignupFormErrors, SignupFormValues } from "@/types";
 
 const initialValues: SignupFormValues = {
@@ -60,9 +59,9 @@ export function SignupForm() {
     pricingTiers.find((item) => item.highlighted) ??
     pricingTiers[0];
 
-  const [step, setStep] = useState<"details" | "payment">("details");
   const [values, setValues] = useState<SignupFormValues>(initialValues);
   const [errors, setErrors] = useState<SignupFormErrors>({});
+  const [submitError, setSubmitError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange<K extends keyof SignupFormValues>(field: K, value: SignupFormValues[K]) {
@@ -77,62 +76,50 @@ export function SignupForm() {
 
     const validationErrors = validate(values);
     setErrors(validationErrors);
+    setSubmitError("");
 
     if (Object.keys(validationErrors).length > 0) {
       return;
     }
 
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    setIsSubmitting(false);
-    setStep("payment");
-  }
+    try {
+      const res = await fetch(`${apiUrl}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: values.email,
+          username: values.email,
+          password: values.password,
+          full_name: values.fullName,
+        }),
+      });
+      const data = await res.json();
 
-  function handlePaymentSuccess() {
-    setAuthUser({ name: values.fullName, email: values.email, plan: tier.slug as PlanSlug });
-    router.push("/dashboard?new=1");
-  }
+      if (!res.ok) {
+        setSubmitError(
+          res.status === 409
+            ? "An account with this email already exists. Try logging in instead."
+            : data.detail || "Could not create your account. Please try again.",
+        );
+        return;
+      }
 
-  if (step === "payment") {
-    return (
-      <div className="rounded-2xl border border-border bg-white p-8 shadow-sm">
-        <div className="flex items-center gap-2 text-sm font-medium text-brand-emerald">
-          <CheckCircle2 className="h-4 w-4" />
-          Account details confirmed
-        </div>
-        <h2 className="mt-3 font-heading text-xl font-semibold text-foreground">Complete your subscription</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          One last step, {values.fullName.split(" ")[0]}. Confirm payment for the {tier.name} plan to finish
-          setting up your workspace.
-        </p>
-
-        <div className="mt-6">
-          <RazorpayCheckoutButton
-            planName={tier.name}
-            amountInRupees={tier.price}
-            billingLabel="Billed monthly"
-            customerName={values.fullName}
-            customerEmail={values.email}
-            onSuccess={handlePaymentSuccess}
-          />
-        </div>
-
-        <button
-          type="button"
-          onClick={() => setStep("details")}
-          className="mt-4 text-xs font-medium text-muted-foreground hover:text-foreground"
-        >
-          Back to account details
-        </button>
-      </div>
-    );
+      setPendingTokens({ access_token: data.access_token, refresh_token: data.refresh_token });
+      setAuthUser({ name: values.fullName, email: values.email, plan: tier.slug as PlanSlug });
+      router.push("/dashboard?new=1");
+    } catch {
+      setSubmitError("Network error — please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
     <div className="rounded-2xl border border-border bg-white p-8 shadow-sm">
       <div className="mb-6 flex items-center justify-between rounded-xl bg-muted p-4">
         <div>
-          <p className="text-xs text-muted-foreground">Selected plan</p>
+          <p className="text-xs text-muted-foreground">14-day free trial, then</p>
           <p className="text-sm font-semibold text-foreground">{tier.name}</p>
         </div>
         <p className="font-heading text-lg font-bold text-foreground">
@@ -140,6 +127,10 @@ export function SignupForm() {
           <span className="text-xs font-normal text-muted-foreground">/month</span>
         </p>
       </div>
+
+      {submitError && (
+        <p className="mb-4 rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{submitError}</p>
+      )}
 
       <form onSubmit={handleDetailsSubmit} noValidate>
         <div className="space-y-5">
