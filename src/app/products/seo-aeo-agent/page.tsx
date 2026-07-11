@@ -33,14 +33,15 @@ export default function SeoAeoAgentPage() {
             <h1 className="mt-6 font-heading text-4xl font-bold text-foreground sm:text-5xl">{product.name}</h1>
             <p className="mt-5 text-lg text-muted-foreground">{product.description}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <Link href="/contact" className={cn(buttonVariants({ size: "lg" }))}>
-                Request early access
+              <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
+                Start free trial
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="/pricing" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
                 See pricing
               </Link>
             </div>
+            <p className="mt-4 text-xs text-muted-foreground">14-day free trial &middot; No card required</p>
           </div>
         </div>
       </section>

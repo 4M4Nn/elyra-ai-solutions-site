@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const heroPoints = [
+  "14-day free trial — no card required",
   "AI visibility across search and AI answer engines",
   "Multi-tenant workspaces built for agencies",
   "Human-approved before anything publishes",
@@ -40,12 +41,12 @@ export function Hero() {
           </ul>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/products/seo-aeo-agent" className={cn(buttonVariants({ size: "lg" }))}>
-              Explore SEO+AEO Agent
+            <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
+              Start free trial
               <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/products" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
-              View all products
+            <Link href="/products/seo-aeo-agent" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+              Explore SEO+AEO Agent
             </Link>
           </div>
         </div>
