@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Hero } from "@/components/sections/Hero";
+import { FreeAuditWidget } from "@/components/sections/FreeAuditWidget";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { SolutionSection } from "@/components/sections/SolutionSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
@@ -88,6 +89,7 @@ export default function Home() {
         />
       ))}
       <Hero />
+      <FreeAuditWidget />
       <ProblemSection />
       <SolutionSection />
       <HowItWorksSection />
