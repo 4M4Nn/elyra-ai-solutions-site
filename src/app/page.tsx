@@ -7,6 +7,7 @@ import { SolutionSection } from "@/components/sections/SolutionSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { CoreFeaturesSection } from "@/components/sections/CoreFeaturesSection";
 import { WhyElyra } from "@/components/sections/WhyElyra";
+import { AboutUsSection } from "@/components/sections/AboutUsSection";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 import { PricingHighlight } from "@/components/sections/PricingHighlight";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -95,6 +96,7 @@ export default function Home() {
       <HowItWorksSection />
       <CoreFeaturesSection />
       <WhyElyra />
+      <AboutUsSection />
       <TrustedBy />
       <PricingHighlight />
       <FAQSection />

@@ -230,6 +230,7 @@ export const trustedCompanies: TrustedCompany[] = [
   { name: "Future Optima IT Solutions" },
   { name: "LoopGen Technologies" },
   { name: "IPB Kochi" },
+  { name: "KarelQ Healthtech Pvt Ltd" },
 ];
 
 export const howItWorks: HowItWorksStep[] = [
