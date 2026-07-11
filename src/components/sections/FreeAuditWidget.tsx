@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { AlertTriangle, CheckCircle2, Download, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { apiUrl } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 type CriticalIssue = { issue: string; severity: string };
 
@@ -24,17 +25,33 @@ function scoreColor(score: number) {
   return "text-destructive";
 }
 
+const AUDIT_STEPS = [
+  "Connecting to your website",
+  "Crawling homepage content",
+  "Checking SEO signals",
+  "Checking AEO signals",
+  "Calculating your score",
+];
+
 export function FreeAuditWidget() {
   const [email, setEmail] = useState("");
   const [websiteUrl, setWebsiteUrl] = useState("");
   const [result, setResult] = useState<AuditResult | null>(null);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const stepTimer = useRef<ReturnType<typeof setInterval> | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
     setIsSubmitting(true);
+    setCurrentStep(0);
+
+    stepTimer.current = setInterval(() => {
+      setCurrentStep((prev) => Math.min(prev + 1, AUDIT_STEPS.length - 1));
+    }, 900);
+
     try {
       const res = await fetch(`${apiUrl}/api/lead-audit/submit`, {
         method: "POST",
@@ -42,12 +59,18 @@ export function FreeAuditWidget() {
         body: JSON.stringify({ email, website_url: websiteUrl }),
       });
       const data = await res.json();
+      if (stepTimer.current) clearInterval(stepTimer.current);
+
       if (!res.ok) {
         setError(data.detail || "Could not audit that website. Please try again.");
         return;
       }
+
+      setCurrentStep(AUDIT_STEPS.length - 1);
+      await new Promise((resolve) => setTimeout(resolve, 500));
       setResult(data);
     } catch {
+      if (stepTimer.current) clearInterval(stepTimer.current);
       setError("Network error — please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
@@ -73,7 +96,27 @@ export function FreeAuditWidget() {
           </p>
         </div>
 
-        {!result ? (
+        {isSubmitting ? (
+          <div className="mx-auto mt-8 max-w-lg space-y-2">
+            {AUDIT_STEPS.map((step, i) => {
+              const state = i < currentStep ? "done" : i === currentStep ? "active" : "pending";
+              return (
+                <div
+                  key={step}
+                  className={cn(
+                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
+                    state === "active" && "bg-primary/5",
+                  )}
+                >
+                  {state === "done" && <CheckCircle2 className="h-4 w-4 shrink-0 text-brand-emerald" />}
+                  {state === "active" && <Loader2 className="h-4 w-4 shrink-0 animate-spin text-primary" />}
+                  {state === "pending" && <span className="h-4 w-4 shrink-0 rounded-full border border-border" />}
+                  <span className={state === "pending" ? "text-muted-foreground" : "text-foreground"}>{step}</span>
+                </div>
+              );
+            })}
+          </div>
+        ) : !result ? (
           <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-lg space-y-4" noValidate>
             <div>
               <label htmlFor="audit-email" className="text-sm font-medium text-foreground">
@@ -106,15 +149,8 @@ export function FreeAuditWidget() {
 
             {error && <p className="text-sm text-destructive">{error}</p>}
 
-            <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <span className="flex items-center justify-center gap-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Auditing your website…
-                </span>
-              ) : (
-                "Get My Free Audit"
-              )}
+            <Button type="submit" size="lg" className="w-full">
+              Get My Free Audit
             </Button>
             <p className="text-center text-xs text-muted-foreground">No credit card. No account. Just results.</p>
           </form>
