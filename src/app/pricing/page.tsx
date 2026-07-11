@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { PricingTable } from "@/components/pricing/PricingTable";
 import { FAQAccordion } from "@/components/pricing/FAQAccordion";
+import { faqItems } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -32,7 +33,7 @@ export default function PricingPage() {
           <h2 className="mt-3 font-heading text-3xl font-bold text-foreground">Common questions</h2>
         </div>
         <div className="mt-10">
-          <FAQAccordion />
+          <FAQAccordion items={faqItems} />
         </div>
       </div>
 

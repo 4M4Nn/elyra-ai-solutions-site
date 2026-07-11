@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://elyra-ai-solutions-site.vercel.app";
+import { siteUrl } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -8,12 +8,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/products",
     "/products/seo-aeo-agent",
     "/pricing",
+    "/signup",
+    "/login",
     "/about",
     "/contact",
   ];
 
   return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${siteUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: route === "" ? 1 : 0.7,

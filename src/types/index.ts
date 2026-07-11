@@ -51,6 +51,16 @@ export interface DifferentiatorItem {
   description: string;
 }
 
+export interface ProblemSolutionItem {
+  problem: string;
+  painDescription: string;
+  solution: string;
+}
+
+export interface TrustedCompany {
+  name: string;
+}
+
 export interface ContactFormValues {
   name: string;
   email: string;

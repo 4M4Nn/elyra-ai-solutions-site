@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarClock, CheckCircle2, Sparkles } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,28 +13,30 @@ const heroPoints = [
 
 export function Hero() {
   return (
-    <section className="bg-hero-gradient">
+    <section aria-label="Introduction" className="bg-hero-gradient">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 md:py-24 lg:grid-cols-2 lg:px-8">
         <div>
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary">
-            <Sparkles className="h-3.5 w-3.5" />
-            Now shipping: Elyra SEO+AEO Agent
+            <Sparkles aria-hidden="true" className="h-3.5 w-3.5" />
+            Elyra SEO+AEO Agent
           </span>
 
           <h1 className="mt-6 font-heading text-4xl font-bold leading-tight text-foreground sm:text-5xl">
-            AI agents that <span className="text-brand-gradient">run the work</span>, not just answer questions.
+            Stop losing customers to competitors who{" "}
+            <span className="text-brand-gradient">show up first</span> — in Google and in AI answers.
           </h1>
 
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Elyra AI Solutions builds production-grade AI agent products for growing businesses —
-            starting with an agent that keeps you visible in Google search and in AI answer engines
-            like ChatGPT and Perplexity.
+            Manual SEO checklists, disconnected tools, and slow fixes cost you visibility every day. Elyra AI
+            runs your SEO and Answer Engine Optimization on autopilot — auditing, fixing, and monitoring your
+            visibility across search engines and AI answer engines like ChatGPT and Google AI Overviews, so
+            your team never chases rankings by hand again.
           </p>
 
           <ul className="mt-6 space-y-3">
             {heroPoints.map((point) => (
               <li key={point} className="flex items-start gap-2 text-sm text-foreground">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand-emerald" />
+                <CheckCircle2 aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-brand-emerald" />
                 {point}
               </li>
             ))}
@@ -42,11 +44,12 @@ export function Hero() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/signup" className={cn(buttonVariants({ size: "lg" }))}>
-              Start free trial
-              <ArrowRight className="h-4 w-4" />
+              Start 14-Day Free Trial
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
-            <Link href="/products/seo-aeo-agent" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
-              Explore SEO+AEO Agent
+            <Link href="/contact" className={cn(buttonVariants({ variant: "outline", size: "lg" }))}>
+              <CalendarClock aria-hidden="true" className="h-4 w-4" />
+              Book a Demo
             </Link>
           </div>
         </div>

@@ -5,7 +5,7 @@ import "./globals.css";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { company } from "@/lib/data";
+import { company, siteUrl } from "@/lib/data";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,7 +18,7 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://elyra-ai-solutions-site.vercel.app"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${company.name} — AI Agent Products for Growing Businesses`,
     template: `%s — ${company.shortName}`,

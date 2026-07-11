@@ -4,9 +4,13 @@ import type {
   HowItWorksStep,
   NavLink,
   PricingTier,
+  ProblemSolutionItem,
   ProductFeature,
   ProductSummary,
+  TrustedCompany,
 } from "@/types";
+
+export const siteUrl = "https://elyra-ai-solutions-site.vercel.app";
 
 export const company = {
   name: "Elyra AI Solutions",
@@ -118,6 +122,116 @@ export const flagshipFeatures: ProductFeature[] = [
   },
 ];
 
+export const problemSolutions: ProblemSolutionItem[] = [
+  {
+    problem: "Too many repetitive manual tasks",
+    painDescription:
+      "Your team spends hours every week on SEO audits, keyword checks, and content checklists that eat into real strategic work.",
+    solution:
+      "Elyra's agent runs full technical SEO audits, keyword clustering, and AEO content checks automatically, every day — no manual checklist required.",
+  },
+  {
+    problem: "Disconnected tools and workflows",
+    painDescription:
+      "Search Console, analytics, spreadsheets, and content docs live in five different tabs that never talk to each other.",
+    solution:
+      "Elyra connects Google Search Console and GA4 into one workspace, so every recommendation is grounded in your site's real performance data.",
+  },
+  {
+    problem: "Time wasted on routine operations",
+    painDescription:
+      "Junior team members burn entire days on repetitive SEO checklist work instead of strategy or client growth.",
+    solution:
+      "Your team reviews a single prioritized queue of AI-generated recommendations instead of running checklists by hand.",
+  },
+  {
+    problem: "Slow business processes",
+    painDescription:
+      "By the time an issue is found, diagnosed, and fixed manually, competitors have already moved past you in the results.",
+    solution: "Elyra detects and prioritizes issues the same day they appear, so fixes ship in hours, not weeks.",
+  },
+  {
+    problem: "Missed opportunities due to manual work",
+    painDescription:
+      "AI answer engines like ChatGPT and Google AI Overviews are already citing competitors while you're still tracking classic rankings by hand.",
+    solution:
+      "Elyra tracks and optimizes for AI answer engines as well as classic search, so you stay visible wherever people ask questions.",
+  },
+  {
+    problem: "High operational costs",
+    painDescription:
+      "Hiring a full in-house SEO team or paying an agency retainer for every client site adds up fast and doesn't scale with growth.",
+    solution:
+      "One AI agent replaces hours of manual SEO work per site, at a fraction of the cost of a team or retainer.",
+  },
+];
+
+export const outcomeFeatures: ProductFeature[] = [
+  {
+    title: "Stay visible in AI search results",
+    description:
+      "Get cited and recommended inside ChatGPT, Perplexity, and Google AI Overviews — not just ranked in classic search.",
+  },
+  {
+    title: "Cut manual audit time to zero",
+    description:
+      "Technical SEO issues are found and prioritized automatically, every day, without anyone running a manual crawl.",
+  },
+  {
+    title: "Publish content that actually ranks",
+    description:
+      "AI-generated recommendations tell you exactly what to fix and why, in plain language your team can act on immediately.",
+  },
+  {
+    title: "Manage every client from one place",
+    description:
+      "Multi-tenant workspaces let agencies run unlimited client sites from a single login, with reports that carry their own brand.",
+  },
+  {
+    title: "Prove ROI to stakeholders",
+    description:
+      "White-label, automated reports show search and AI-answer visibility side by side, ready to share on a schedule.",
+  },
+  {
+    title: "Keep full control over what changes",
+    description:
+      "Every recommendation is reviewed and approved by your team before anything publishes — automation without losing oversight.",
+  },
+];
+
+export const businessBenefits: DifferentiatorItem[] = [
+  {
+    title: "Save time",
+    description: "Automate the SEO busywork so your team spends hours on strategy, not checklists.",
+  },
+  {
+    title: "Reduce costs",
+    description: "Get agency-grade SEO and AEO monitoring for a fraction of the cost of a retainer or in-house hire.",
+  },
+  {
+    title: "Increase productivity",
+    description: "One prioritized queue of AI recommendations replaces a dozen scattered tools and reports.",
+  },
+  {
+    title: "Improve decision making",
+    description: "Every recommendation is grounded in real Search Console and GA4 data, not guesswork.",
+  },
+  {
+    title: "Scale operations",
+    description: "Add workspaces for new sites or clients in minutes, without adding headcount.",
+  },
+  {
+    title: "Easy implementation",
+    description: "Connect your site and start your 14-day free trial in under five minutes — no engineering work required.",
+  },
+];
+
+export const trustedCompanies: TrustedCompany[] = [
+  { name: "Future Optima IT Solutions" },
+  { name: "LoopGen Technologies" },
+  { name: "IPB Kochi" },
+];
+
 export const howItWorks: HowItWorksStep[] = [
   {
     step: 1,
@@ -203,16 +317,61 @@ export const pricingTiers: PricingTier[] = [
   },
 ];
 
-export const pricingFAQ: FAQItem[] = [
-  {
-    question: "Is Elyra SEO+AEO Agent available now?",
-    answer:
-      "Yes. Elyra SEO+AEO Agent is live. Choose a plan on the pricing page and create your account in a few minutes.",
-  },
+export const faqItems: FAQItem[] = [
   {
     question: "Do you offer a free trial?",
     answer:
-      "Yes. Every new account gets a 14-day free trial with no card required — 1 website and up to 5 blog posts, full audit and AEO tracking included. Subscribe to a plan any time during or after the trial to unlock more workspaces and keywords.",
+      "Yes. Every new account gets a 14-day free trial with no card required — 1 website and up to 5 blog posts, full audit and AEO tracking included. Choose a plan any time during or after the trial to unlock more workspaces and keywords.",
+  },
+  {
+    question: "What happens after my 14-day trial ends?",
+    answer:
+      "You can choose a plan and continue seamlessly, or do nothing — your workspace simply pauses until you subscribe. You are never charged automatically without picking a plan.",
+  },
+  {
+    question: "How long does it take to get started?",
+    answer:
+      "Most teams connect their site and see their first audit results in under 10 minutes — no engineering work required.",
+  },
+  {
+    question: "Is Elyra SEO+AEO Agent available now?",
+    answer:
+      "Yes. Elyra SEO+AEO Agent is live. Start your 14-day free trial from the pricing page and create your account in a few minutes.",
+  },
+  {
+    question: "How much does Elyra SEO+AEO Agent cost?",
+    answer:
+      "Plans start at ₹2,999/month for a single site (Starter), ₹6,999/month for growing teams (Growth), and ₹14,999/month for agencies managing unlimited client workspaces (Agency). Annual billing saves 20% on every plan.",
+  },
+  {
+    question: "Can I switch plans later?",
+    answer:
+      "Yes. You can move between Starter, Growth, and Agency at any time as your number of workspaces and tracked keywords grows.",
+  },
+  {
+    question: "Is my data secure?",
+    answer:
+      "Yes. All data is encrypted in transit and at rest, and each workspace is isolated so client data never mixes across accounts.",
+  },
+  {
+    question: "What support do you offer?",
+    answer:
+      "Every plan includes email support, with priority email support on Growth and dedicated onboarding support on Agency.",
+  },
+  {
+    question: "What integrations does Elyra support?",
+    answer:
+      "Elyra connects directly with Google Search Console and Google Analytics 4 today, with more integrations planned as we grow.",
+  },
+  {
+    question: "Do you share my data with third parties?",
+    answer:
+      "No. Your site and account data is used only to power your own recommendations and reports — it is never sold or shared with third parties.",
+  },
+  {
+    question: "Can I cancel anytime?",
+    answer:
+      "Yes. You can cancel during your free trial or at any time after with no cancellation fee — your workspace stays active until the end of your current billing period.",
   },
   {
     question: "What is Answer Engine Optimization (AEO)?",
@@ -225,42 +384,9 @@ export const pricingFAQ: FAQItem[] = [
       "Yes. Every plan is built on multi-tenant workspaces, and the Agency plan is specifically designed for agencies managing an unlimited number of client sites from a single login with white-label reporting.",
   },
   {
-    question: "Do you offer annual billing?",
-    answer:
-      "Yes. Toggle to annual billing on the pricing page for a 20% discount on every plan, billed once a year.",
-  },
-  {
-    question: "Can I switch plans later?",
-    answer:
-      "Yes. You can move between Starter, Growth, and Agency at any time as your number of workspaces and tracked keywords grows.",
-  },
-  {
     question: "What other products is Elyra building?",
     answer:
       "Elyra SEO+AEO Agent is our first product. Elyra Cybersecurity Agent and Elyra ERP for Institutes are both in development — visit the Products page for details and to register interest.",
-  },
-];
-
-export const differentiators: DifferentiatorItem[] = [
-  {
-    title: "Built for both search and AI answers",
-    description:
-      "Most SEO tools only track classic rankings. Elyra tracks and optimizes for AI answer engines too, so you stay visible as more discovery moves into AI conversations.",
-  },
-  {
-    title: "Multi-tenant from the ground up",
-    description:
-      "Elyra products are architected for agencies and teams managing many clients or brands, not retrofitted from a single-site tool.",
-  },
-  {
-    title: "Agent-driven, human-approved",
-    description:
-      "Every recommendation is generated by the agent but reviewed and approved by your team before anything changes — automation without losing control.",
-  },
-  {
-    title: "One platform, growing product line",
-    description:
-      "Elyra AI Solutions is building a family of AI agent products under one account — starting with SEO and AEO, expanding into cybersecurity and education operations.",
   },
 ];
 

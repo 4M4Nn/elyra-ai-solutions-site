@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
 
+import { siteUrl } from "@/lib/data";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/dashboard"],
     },
-    sitemap: "https://elyra-ai-solutions-site.vercel.app/sitemap.xml",
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
