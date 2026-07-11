@@ -99,7 +99,7 @@ export function PricingTable() {
                 14 days free, then {tier.name}
               </p>
               <Link
-                href={`/signup?plan=${tier.slug}`}
+                href={`/signup?plan=${tier.slug}&cycle=${billingCycle}`}
                 className={cn(
                   buttonVariants({ variant: tier.highlighted ? "default" : "outline" }),
                   "mt-2 w-full justify-center"

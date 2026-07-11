@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { pricingTiers, apiUrl } from "@/lib/data";
+import { pricingTiers, apiUrl, annualDiscountPercent } from "@/lib/data";
 import { setAuthUser } from "@/lib/auth";
 import { setPendingTokens } from "@/lib/agentAuth";
 import type { PlanSlug, SignupFormErrors, SignupFormValues } from "@/types";
@@ -58,6 +58,9 @@ export function SignupForm() {
     pricingTiers.find((item) => item.slug === requestedPlan) ??
     pricingTiers.find((item) => item.highlighted) ??
     pricingTiers[0];
+
+  const isAnnual = searchParams.get("cycle") === "annual";
+  const displayPrice = isAnnual ? Math.round((tier.price * (100 - annualDiscountPercent)) / 100) : tier.price;
 
   const [values, setValues] = useState<SignupFormValues>(initialValues);
   const [errors, setErrors] = useState<SignupFormErrors>({});
@@ -120,10 +123,13 @@ export function SignupForm() {
       <div className="mb-6 flex items-center justify-between rounded-xl bg-muted p-4">
         <div>
           <p className="text-xs text-muted-foreground">14-day free trial, then</p>
-          <p className="text-sm font-semibold text-foreground">{tier.name}</p>
+          <p className="text-sm font-semibold text-foreground">
+            {tier.name}
+            {isAnnual && <span className="ml-1 font-normal text-muted-foreground">(billed annually)</span>}
+          </p>
         </div>
         <p className="font-heading text-lg font-bold text-foreground">
-          ₹{tier.price.toLocaleString("en-IN")}
+          ₹{displayPrice.toLocaleString("en-IN")}
           <span className="text-xs font-normal text-muted-foreground">/month</span>
         </p>
       </div>
