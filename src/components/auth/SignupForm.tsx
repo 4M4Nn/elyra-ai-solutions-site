@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { pricingTiers, apiUrl, annualDiscountPercent } from "@/lib/data";
 import { setAuthUser } from "@/lib/auth";
 import { setPendingTokens } from "@/lib/agentAuth";
@@ -173,9 +174,8 @@ export function SignupForm() {
             <label htmlFor="password" className="text-sm font-medium text-foreground">
               Password
             </label>
-            <Input
+            <PasswordInput
               id="password"
-              type="password"
               value={values.password}
               onChange={(event) => handleChange("password", event.target.value)}
               className="mt-2"
@@ -188,9 +188,8 @@ export function SignupForm() {
             <label htmlFor="confirmPassword" className="text-sm font-medium text-foreground">
               Confirm password
             </label>
-            <Input
+            <PasswordInput
               id="confirmPassword"
-              type="password"
               value={values.confirmPassword}
               onChange={(event) => handleChange("confirmPassword", event.target.value)}
               className="mt-2"

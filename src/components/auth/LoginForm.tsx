@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { apiUrl } from "@/lib/data";
 import { setAuthUser } from "@/lib/auth";
 import { setPendingTokens } from "@/lib/agentAuth";
@@ -112,9 +113,8 @@ export function LoginForm() {
                 Forgot password?
               </Link>
             </div>
-            <Input
+            <PasswordInput
               id="password"
-              type="password"
               value={values.password}
               onChange={(event) => handleChange("password", event.target.value)}
               className="mt-2"
