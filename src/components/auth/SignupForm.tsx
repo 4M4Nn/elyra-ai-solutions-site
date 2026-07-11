@@ -210,8 +210,11 @@ export function SignupForm() {
         </div>
 
         <Button type="submit" size="lg" className="mt-6 w-full" disabled={isSubmitting}>
-          {isSubmitting ? "Creating account..." : "Create Account"}
+          {isSubmitting ? "Starting your trial..." : "Start free trial"}
         </Button>
+        <p className="mt-3 text-center text-xs text-muted-foreground">
+          No card required. Cancel anytime during your 14-day trial.
+        </p>
       </form>
 
       <p className="mt-6 text-center text-sm text-muted-foreground">

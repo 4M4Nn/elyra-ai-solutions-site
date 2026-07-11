@@ -16,6 +16,12 @@ export function PricingTable() {
 
   return (
     <div>
+      <div className="mb-6 flex justify-center">
+        <span className="rounded-full bg-brand-emerald/10 px-4 py-1.5 text-sm font-semibold text-brand-emerald">
+          Start with a 14-day free trial — no card required
+        </span>
+      </div>
+
       <div className="flex items-center justify-center gap-3">
         <span className={cn("text-sm font-medium", !isAnnual ? "text-foreground" : "text-muted-foreground")}>
           Monthly
@@ -89,11 +95,14 @@ export function PricingTable() {
                 ))}
               </ul>
 
+              <p className="mt-6 text-center text-xs text-muted-foreground">
+                14 days free, then {tier.name}
+              </p>
               <Link
                 href={`/signup?plan=${tier.slug}`}
                 className={cn(
                   buttonVariants({ variant: tier.highlighted ? "default" : "outline" }),
-                  "mt-8 w-full justify-center"
+                  "mt-2 w-full justify-center"
                 )}
               >
                 {tier.ctaLabel}

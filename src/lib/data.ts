@@ -162,7 +162,7 @@ export const pricingTiers: PricingTier[] = [
       "Search Console & GA4 integration",
       "Email support",
     ],
-    ctaLabel: "Subscribe Now",
+    ctaLabel: "Start free trial",
     highlighted: false,
   },
   {
@@ -180,7 +180,7 @@ export const pricingTiers: PricingTier[] = [
       "Role-based team access",
       "Priority email support",
     ],
-    ctaLabel: "Subscribe Now",
+    ctaLabel: "Start free trial",
     highlighted: true,
   },
   {
@@ -198,7 +198,7 @@ export const pricingTiers: PricingTier[] = [
       "Role-based team & client access",
       "Dedicated onboarding support",
     ],
-    ctaLabel: "Subscribe Now",
+    ctaLabel: "Start free trial",
     highlighted: false,
   },
 ];
@@ -208,6 +208,11 @@ export const pricingFAQ: FAQItem[] = [
     question: "Is Elyra SEO+AEO Agent available now?",
     answer:
       "Yes. Elyra SEO+AEO Agent is live. Choose a plan on the pricing page and create your account in a few minutes.",
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer:
+      "Yes. Every new account gets a 14-day free trial with no card required — 1 website and up to 5 blog posts, full audit and AEO tracking included. Subscribe to a plan any time during or after the trial to unlock more workspaces and keywords.",
   },
   {
     question: "What is Answer Engine Optimization (AEO)?",
