@@ -12,6 +12,7 @@ type CriticalIssue = { issue: string; severity: string };
 type AuditResult = {
   lead_id: number;
   seo_score: number;
+  aeo_score: number;
   critical_issues: number;
   summary: { critical_issues?: CriticalIssue[] };
   message: string;
@@ -119,11 +120,19 @@ export function FreeAuditWidget() {
           </form>
         ) : (
           <div className="mx-auto mt-8 max-w-lg">
-            <div className="flex flex-col items-center">
-              <span className={`font-heading text-6xl font-black ${scoreColor(result.seo_score)}`}>
-                {result.seo_score.toFixed(0)}
-              </span>
-              <span className="text-sm text-muted-foreground">out of 100</span>
+            <div className="flex items-center justify-center gap-10">
+              <div className="flex flex-col items-center">
+                <span className={`font-heading text-5xl font-black ${scoreColor(result.seo_score)}`}>
+                  {result.seo_score.toFixed(0)}
+                </span>
+                <span className="text-sm text-muted-foreground">SEO Score</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className={`font-heading text-5xl font-black ${scoreColor(result.aeo_score)}`}>
+                  {result.aeo_score.toFixed(0)}
+                </span>
+                <span className="text-sm text-muted-foreground">AEO Score</span>
+              </div>
             </div>
 
             <div className="mt-8">
