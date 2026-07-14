@@ -6,7 +6,7 @@ import { faqItems } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: `Simple, transparent subscription pricing for Elyra SEO+AEO Agent — from single-site Starter plans to unlimited multi-tenant Agency plans.`,
+  description: `Simple, transparent subscription pricing for Elyra SEO+AEO Agent — from single-site Starter plans to multi-tenant Agency plans and custom Enterprise pricing.`,
 };
 
 export default function PricingPage() {

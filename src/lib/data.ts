@@ -103,7 +103,7 @@ export const flagshipFeatures: ProductFeature[] = [
   {
     title: "Multi-tenant workspaces",
     description:
-      "Manage unlimited client or brand workspaces from a single account, each with isolated data, reporting, and team access — built for agencies from day one.",
+      "Manage multiple client or brand workspaces from a single account, each with isolated data, reporting, and team access — built for agencies from day one.",
   },
   {
     title: "White-label client reporting",
@@ -185,7 +185,7 @@ export const outcomeFeatures: ProductFeature[] = [
   {
     title: "Manage every client from one place",
     description:
-      "Multi-tenant workspaces let agencies run unlimited client sites from a single login, with reports that carry their own brand.",
+      "Multi-tenant workspaces let agencies run multiple client sites from a single login, with reports that carry their own brand.",
   },
   {
     title: "Prove ROI to stakeholders",
@@ -278,6 +278,7 @@ export const pricingTiers: PricingTier[] = [
       "Email support",
     ],
     ctaLabel: "Start free trial",
+    ctaHref: "/signup",
     highlighted: false,
   },
   {
@@ -296,6 +297,7 @@ export const pricingTiers: PricingTier[] = [
       "Priority email support",
     ],
     ctaLabel: "Start free trial",
+    ctaHref: "/signup",
     highlighted: true,
   },
   {
@@ -303,9 +305,9 @@ export const pricingTiers: PricingTier[] = [
     name: "Agency",
     price: 14999,
     billingPeriod: "month",
-    description: "Multi-tenant workspace management built for agencies serving many clients.",
+    description: "Multi-tenant workspace management for agencies managing up to 15 active clients.",
     features: [
-      "Unlimited client workspaces",
+      "Up to 15 client workspaces",
       "Daily automated technical audits",
       "AI visibility tracking (search + AI answers)",
       "Unlimited tracked keywords",
@@ -314,7 +316,27 @@ export const pricingTiers: PricingTier[] = [
       "Dedicated onboarding support",
     ],
     ctaLabel: "Start free trial",
+    ctaHref: "/signup",
     highlighted: false,
+  },
+  {
+    slug: "enterprise",
+    name: "Enterprise",
+    price: 0,
+    billingPeriod: "month",
+    description: "For large agencies and organizations that need unlimited scale, custom integrations, and dedicated support.",
+    features: [
+      "Unlimited client workspaces",
+      "Custom tracked keyword volume",
+      "Custom integrations & data exports",
+      "Dedicated success manager",
+      "Enterprise SSO & security review",
+      "Custom contract, invoicing & SLA",
+    ],
+    ctaLabel: "Talk to Sales",
+    ctaHref: "/contact",
+    highlighted: false,
+    customPricing: true,
   },
 ];
 
@@ -342,12 +364,12 @@ export const faqItems: FAQItem[] = [
   {
     question: "How much does Elyra SEO+AEO Agent cost?",
     answer:
-      "Plans start at ₹2,999/month for a single site (Starter), ₹6,999/month for growing teams (Growth), and ₹14,999/month for agencies managing unlimited client workspaces (Agency). Annual billing saves 20% on every plan.",
+      "Plans start at ₹2,999/month for a single site (Starter), ₹6,999/month for growing teams (Growth), and ₹14,999/month for agencies managing up to 15 client workspaces (Agency). Annual billing saves 20% on every plan. Larger agencies and organizations needing unlimited workspaces get custom Enterprise pricing — talk to sales.",
   },
   {
     question: "Can I switch plans later?",
     answer:
-      "Yes. You can move between Starter, Growth, and Agency at any time as your number of workspaces and tracked keywords grows.",
+      "Yes. You can move between Starter, Growth, and Agency at any time as your number of workspaces and tracked keywords grows. If you outgrow Agency's 15-client limit, our team will move you to a custom Enterprise plan.",
   },
   {
     question: "Is my data secure?",
@@ -382,7 +404,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "Can agencies manage multiple clients on one account?",
     answer:
-      "Yes. Every plan is built on multi-tenant workspaces, and the Agency plan is specifically designed for agencies managing an unlimited number of client sites from a single login with white-label reporting.",
+      "Yes. Every plan is built on multi-tenant workspaces. The Agency plan is designed for agencies managing up to 15 client sites from a single login with white-label reporting — agencies managing more than 15 clients can move to a custom Enterprise plan with unlimited workspaces.",
   },
   {
     question: "What other products is Elyra building?",

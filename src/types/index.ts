@@ -28,7 +28,7 @@ export interface HowItWorksStep {
   description: string;
 }
 
-export type PlanSlug = "starter" | "growth" | "agency";
+export type PlanSlug = "starter" | "growth" | "agency" | "enterprise";
 
 export interface PricingTier {
   slug: PlanSlug;
@@ -38,7 +38,9 @@ export interface PricingTier {
   description: string;
   features: string[];
   ctaLabel: string;
+  ctaHref: string;
   highlighted: boolean;
+  customPricing?: boolean;
 }
 
 export interface FAQItem {

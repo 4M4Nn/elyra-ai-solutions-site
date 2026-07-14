@@ -51,13 +51,15 @@ function buildStructuredData() {
     description: flagshipProduct.description,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
-    offers: pricingTiers.map((tier) => ({
-      "@type": "Offer",
-      name: tier.name,
-      price: tier.price,
-      priceCurrency: "INR",
-      description: tier.description,
-    })),
+    offers: pricingTiers
+      .filter((tier) => !tier.customPricing)
+      .map((tier) => ({
+        "@type": "Offer",
+        name: tier.name,
+        price: tier.price,
+        priceCurrency: "INR",
+        description: tier.description,
+      })),
   };
 
   const faqPage = {

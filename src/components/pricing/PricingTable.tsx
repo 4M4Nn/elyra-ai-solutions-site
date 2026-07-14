@@ -51,11 +51,15 @@ export function PricingTable() {
         </span>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-4">
         {pricingTiers.map((tier) => {
           const displayPrice = isAnnual
             ? Math.round((tier.price * (100 - annualDiscountPercent)) / 100)
             : tier.price;
+
+          const href = tier.customPricing
+            ? tier.ctaHref
+            : `${tier.ctaHref}?plan=${tier.slug}&cycle=${billingCycle}`;
 
           return (
             <div
@@ -75,15 +79,24 @@ export function PricingTable() {
               <h3 className="font-heading text-xl font-semibold text-foreground">{tier.name}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{tier.description}</p>
               <div className="mt-6 flex items-baseline gap-1">
-                <span className="font-heading text-4xl font-bold text-foreground">
-                  ₹{displayPrice.toLocaleString("en-IN")}
-                </span>
-                <span className="text-sm text-muted-foreground">/ {tier.billingPeriod}</span>
+                {tier.customPricing ? (
+                  <span className="font-heading text-4xl font-bold text-foreground">Custom</span>
+                ) : (
+                  <>
+                    <span className="font-heading text-4xl font-bold text-foreground">
+                      ₹{displayPrice.toLocaleString("en-IN")}
+                    </span>
+                    <span className="text-sm text-muted-foreground">/ {tier.billingPeriod}</span>
+                  </>
+                )}
               </div>
-              {isAnnual && (
+              {isAnnual && !tier.customPricing && (
                 <p className="mt-1 text-xs text-muted-foreground">
                   Billed annually as ₹{(displayPrice * 12).toLocaleString("en-IN")}
                 </p>
+              )}
+              {tier.customPricing && (
+                <p className="mt-1 text-xs text-muted-foreground">Priced to your scale</p>
               )}
 
               <ul className="mt-6 flex-1 space-y-3">
@@ -96,10 +109,10 @@ export function PricingTable() {
               </ul>
 
               <p className="mt-6 text-center text-xs text-muted-foreground">
-                14 days free, then {tier.name}
+                {tier.customPricing ? "Dedicated onboarding & contract" : `14 days free, then ${tier.name}`}
               </p>
               <Link
-                href={`/signup?plan=${tier.slug}&cycle=${billingCycle}`}
+                href={href}
                 className={cn(
                   buttonVariants({ variant: tier.highlighted ? "default" : "outline" }),
                   "mt-2 w-full justify-center"

@@ -56,7 +56,7 @@ export function SignupForm() {
 
   const requestedPlan = searchParams.get("plan");
   const tier =
-    pricingTiers.find((item) => item.slug === requestedPlan) ??
+    pricingTiers.find((item) => item.slug === requestedPlan && !item.customPricing) ??
     pricingTiers.find((item) => item.highlighted) ??
     pricingTiers[0];
 
