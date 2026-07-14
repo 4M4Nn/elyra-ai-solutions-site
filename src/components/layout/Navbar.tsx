@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight, Menu, Sparkles } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -40,8 +41,16 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-white">
-            <Sparkles className="h-4 w-4" />
+          <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-border/60 bg-white">
+            <Image
+              src="/logo.jpg"
+              alt="Elyra AI Solutions logo"
+              fill
+              sizes="36px"
+              className="scale-[2.5] object-cover"
+              style={{ objectPosition: "50% 24%" }}
+              priority
+            />
           </span>
           {company.shortName}
         </Link>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import Image from "next/image";
 
 import { company, products, socialLinks } from "@/lib/data";
 import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons/SocialIcons";
@@ -24,11 +24,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-gradient text-white">
-                <Sparkles className="h-4 w-4" />
-              </span>
-              {company.shortName}
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logo.jpg"
+                alt="Elyra AI Solutions"
+                width={640}
+                height={640}
+                className="h-36 w-36 object-contain"
+              />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">{company.description}</p>
             <div className="mt-5 flex items-center gap-3">

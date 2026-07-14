@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { FreeAuditWidget } from "@/components/sections/FreeAuditWidget";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { SolutionSection } from "@/components/sections/SolutionSection";
+import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { CoreFeaturesSection } from "@/components/sections/CoreFeaturesSection";
 import { WhyElyra } from "@/components/sections/WhyElyra";
@@ -93,6 +94,7 @@ export default function Home() {
       <FreeAuditWidget />
       <ProblemSection />
       <SolutionSection />
+      <DemoVideoSection />
       <HowItWorksSection />
       <CoreFeaturesSection />
       <WhyElyra />

@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { FeatureGrid } from "@/components/products/FeatureGrid";
 import { HowItWorksSteps } from "@/components/products/HowItWorksSteps";
+import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { flagshipFeatures, howItWorks, products } from "@/lib/data";
@@ -45,6 +46,8 @@ export default function SeoAeoAgentPage() {
           </div>
         </div>
       </section>
+
+      <DemoVideoSection />
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
