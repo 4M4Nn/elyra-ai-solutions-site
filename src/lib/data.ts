@@ -17,7 +17,7 @@ export const company = {
   shortName: "Elyra",
   tagline: "AI agents that run the work, not just answer questions.",
   description:
-    "Elyra AI Solutions builds production-grade AI agent products for growing businesses — starting with SEO and Answer Engine Optimization, and expanding into cybersecurity and education technology.",
+    "Elyra AI Solutions builds production-grade AI agent products for growing businesses — starting with SEO and Answer Engine Optimization and 24/7 AI lead response, and expanding into cybersecurity and education technology.",
   email: "hello@elyra.ai",
   foundingYear: 2026,
   address: "Remote-first · Serving clients worldwide",
@@ -28,6 +28,12 @@ export const appUrl = process.env.NEXT_PUBLIC_AGENT_URL || "https://nexora-seo-a
 
 // The SEO+AEO Agent backend API, for future signup/login wiring.
 export const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://nexora-seo-backend.onrender.com";
+
+// The deployed Elyra AI Lead Management app — its own product, own login and
+// own Razorpay subscription checkout at /subscribe. Not wired into this
+// site's shared SEO-Agent auth (see Navbar) — CTAs link straight out to it.
+export const leadManagementAppUrl =
+  process.env.NEXT_PUBLIC_LEAD_MANAGEMENT_URL || "https://frontend-ten-lilac-94.vercel.app";
 
 export const socialLinks = [
   { platform: "linkedin", href: "https://linkedin.com/company/elyra-ai-solutions" },
@@ -54,6 +60,17 @@ export const products: ProductSummary[] = [
     status: "live",
     category: "SEO & Answer Engine Optimization",
     audience: "Businesses, marketing teams, and agencies managing multiple client sites",
+  },
+  {
+    slug: "ai-lead-management",
+    name: "Elyra AI Lead Management",
+    shortName: "AI Lead Management",
+    tagline: "An AI agent that answers every lead on WhatsApp, Messenger, and Instagram — 24/7.",
+    description:
+      "A 24/7 AI agent that responds to every WhatsApp, Facebook Messenger, and Instagram DM the moment it arrives — qualifying leads, booking appointments, and handing off to your staff when needed, so no inquiry waits until business hours.",
+    status: "live",
+    category: "AI Lead Response & Booking",
+    audience: "Service businesses — education, insurance & finance, salons & spas, and general services — that get leads outside business hours",
   },
   {
     slug: "cybersecurity-agent",
@@ -417,4 +434,4 @@ export const missionStatement =
   "Elyra AI Solutions exists to build AI agents that do real, verifiable work inside a business — not chat interfaces bolted onto old software. We start narrow, ship agents that are genuinely useful in their first week, and expand from there.";
 
 export const roadmapNote =
-  "Elyra SEO+AEO Agent is our first product and is in active development with early access opening on a rolling basis. Elyra Cybersecurity Agent and Elyra ERP for Institutes are both in design and development, informed directly by conversations with prospective customers in security and education.";
+  "Elyra SEO+AEO Agent and Elyra AI Lead Management are both live today. Elyra Cybersecurity Agent and Elyra ERP for Institutes are both in design and development, informed directly by conversations with prospective customers in security and education.";

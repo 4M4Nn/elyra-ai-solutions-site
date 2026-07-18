@@ -9,7 +9,7 @@ import { company, products, roadmapNote } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: `Explore the full ${company.name} product line — Elyra SEO+AEO Agent, live today, plus Elyra Cybersecurity Agent and Elyra ERP for Institutes, both in development.`,
+  description: `Explore the full ${company.name} product line — Elyra SEO+AEO Agent and Elyra AI Lead Management, both live today, plus Elyra Cybersecurity Agent and Elyra ERP for Institutes, in development.`,
 };
 
 export default function ProductsPage() {

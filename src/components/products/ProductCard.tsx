@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Search, ShieldCheck, GraduationCap } from "lucide-react";
+import { ArrowRight, Search, ShieldCheck, GraduationCap, MessageCircle } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -9,6 +9,7 @@ import type { ProductSummary } from "@/types";
 
 const iconMap = {
   "seo-aeo-agent": Search,
+  "ai-lead-management": MessageCircle,
   "cybersecurity-agent": ShieldCheck,
   "erp-for-institutes": GraduationCap,
 };

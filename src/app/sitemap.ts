@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/products",
     "/products/seo-aeo-agent",
+    "/products/ai-lead-management",
     "/pricing",
     "/signup",
     "/login",
