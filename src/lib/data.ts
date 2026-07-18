@@ -314,6 +314,38 @@ export const leadManagementHighlights: string[] = [
   "Staff can take over anytime — the AI auto-resumes if they go quiet",
 ];
 
+export const leadManagementFaqItems: FAQItem[] = [
+  {
+    question: "Is Elyra AI Lead Management live?",
+    answer:
+      "Yes — it's live today. You can subscribe and connect your WhatsApp, Messenger, and Instagram in a few minutes.",
+  },
+  {
+    question: "Which channels does it support?",
+    answer:
+      "WhatsApp, Facebook Messenger, and Instagram DM, all through one Meta Business Login. The Small plan covers WhatsApp; Messenger and Instagram are included on Medium and High.",
+  },
+  {
+    question: "Does the AI ever stop responding?",
+    answer:
+      "No — it runs 24/7. If a staff member takes over a conversation and goes quiet, the AI automatically resumes after your configured inactivity window so leads don't go cold.",
+  },
+  {
+    question: "How much does it cost?",
+    answer:
+      "Small is ₹2,999/month (WhatsApp only), Medium is ₹5,999/month (adds Messenger and Instagram, 5 staff seats), and High is ₹9,999/month (unlimited staff seats and priority support).",
+  },
+  {
+    question: "Can I switch plans or cancel?",
+    answer: "Yes. Change plans or cancel anytime — there's no lock-in contract.",
+  },
+  {
+    question: "What kind of businesses is this built for?",
+    answer:
+      "Service businesses that get leads outside business hours — education providers, insurance and finance advisors, salons and spas, and general service businesses — with per-industry knowledge base configuration for each.",
+  },
+];
+
 export const flagshipHighlights: string[] = [
   "AI visibility tracking across Google and AI answer engines",
   "Automated technical SEO audits, prioritized by impact",
@@ -390,7 +422,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What other products is Elyra building?",
     answer:
-      "Elyra SEO+AEO Agent is our first product. Elyra Cybersecurity Agent and Elyra ERP for Institutes are both in development — visit the Products page for details and to register interest.",
+      "Elyra AI Lead Management, our 24/7 WhatsApp/Messenger/Instagram AI agent, is also live today. Elyra Cybersecurity Agent and Elyra ERP for Institutes are both in development — visit the Products page for details and to register interest.",
   },
 ];
 
