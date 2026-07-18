@@ -5,6 +5,8 @@ import "./globals.css";
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
+import { IntroLoader } from "@/components/motion/IntroLoader";
 import { company, siteUrl } from "@/lib/data";
 
 const inter = Inter({
@@ -54,9 +56,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${sora.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <IntroLoader />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
         <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       </body>
     </html>

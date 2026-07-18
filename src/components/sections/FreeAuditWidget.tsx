@@ -3,6 +3,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import { AlertTriangle, CheckCircle2, Download, Loader2 } from "lucide-react";
 
+import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { apiUrl } from "@/lib/data";
@@ -84,7 +85,7 @@ export function FreeAuditWidget() {
 
   return (
     <section aria-label="Free website audit" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="rounded-3xl border border-border bg-white p-8 shadow-sm sm:p-10">
+      <Reveal className="glass-panel rounded-3xl p-8 shadow-sm sm:p-10">
         <div className="text-center">
           <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
             Free, no account needed
@@ -216,7 +217,7 @@ export function FreeAuditWidget() {
             </button>
           </div>
         )}
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 import { Building2 } from "lucide-react";
 
+import { Reveal } from "@/components/motion/Reveal";
 import { trustedCompanies } from "@/lib/data";
 
 export function TrustedBy() {
@@ -9,17 +10,17 @@ export function TrustedBy() {
         Trusted by early customers
       </p>
 
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <Reveal stagger className="mt-8 flex flex-wrap items-center justify-center gap-4">
         {trustedCompanies.map((company) => (
           <div
             key={company.name}
-            className="flex items-center gap-2 rounded-full border border-border bg-white px-5 py-3 shadow-sm"
+            className="glass-panel flex items-center gap-2 rounded-full px-5 py-3 shadow-sm"
           >
             <Building2 aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm font-medium text-foreground">{company.name}</span>
           </div>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

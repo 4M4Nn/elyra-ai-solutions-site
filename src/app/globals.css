@@ -132,3 +132,57 @@ h1, h2, h3, h4, h5, h6 {
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
 }
+
+/* Lenis smooth-scroll recommended overrides */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Premium cinematic surfaces */
+.bg-cinematic {
+  background:
+    radial-gradient(90% 60% at 15% 0%, rgba(245, 158, 11, 0.22) 0%, transparent 55%),
+    radial-gradient(80% 55% at 100% 15%, rgba(14, 165, 233, 0.22) 0%, transparent 55%),
+    #05060f;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.glass-panel-dark {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+.animate-float-orb {
+  animation: float-orb 7s ease-in-out infinite;
+}

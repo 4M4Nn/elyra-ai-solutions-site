@@ -2,9 +2,9 @@ import type {
   DifferentiatorItem,
   FAQItem,
   HowItWorksStep,
+  LeadManagementPricingTier,
   NavLink,
   PricingTier,
-  ProblemSolutionItem,
   ProductFeature,
   ProductSummary,
   TrustedCompany,
@@ -136,83 +136,6 @@ export const flagshipFeatures: ProductFeature[] = [
     title: "Search Console & analytics integrations",
     description:
       "Connect Google Search Console and GA4 so the agent's recommendations are grounded in your site's real performance data, not generic best practice.",
-  },
-];
-
-export const problemSolutions: ProblemSolutionItem[] = [
-  {
-    problem: "Too many repetitive manual tasks",
-    painDescription:
-      "Your team spends hours every week on SEO audits, keyword checks, and content checklists that eat into real strategic work.",
-    solution:
-      "Elyra's agent runs full technical SEO audits, keyword clustering, and AEO content checks automatically, every day — no manual checklist required.",
-  },
-  {
-    problem: "Disconnected tools and workflows",
-    painDescription:
-      "Search Console, analytics, spreadsheets, and content docs live in five different tabs that never talk to each other.",
-    solution:
-      "Elyra connects Google Search Console and GA4 into one workspace, so every recommendation is grounded in your site's real performance data.",
-  },
-  {
-    problem: "Time wasted on routine operations",
-    painDescription:
-      "Junior team members burn entire days on repetitive SEO checklist work instead of strategy or client growth.",
-    solution:
-      "Your team reviews a single prioritized queue of AI-generated recommendations instead of running checklists by hand.",
-  },
-  {
-    problem: "Slow business processes",
-    painDescription:
-      "By the time an issue is found, diagnosed, and fixed manually, competitors have already moved past you in the results.",
-    solution: "Elyra detects and prioritizes issues the same day they appear, so fixes ship in hours, not weeks.",
-  },
-  {
-    problem: "Missed opportunities due to manual work",
-    painDescription:
-      "AI answer engines like ChatGPT and Google AI Overviews are already citing competitors while you're still tracking classic rankings by hand.",
-    solution:
-      "Elyra tracks and optimizes for AI answer engines as well as classic search, so you stay visible wherever people ask questions.",
-  },
-  {
-    problem: "High operational costs",
-    painDescription:
-      "Hiring a full in-house SEO team or paying an agency retainer for every client site adds up fast and doesn't scale with growth.",
-    solution:
-      "One AI agent replaces hours of manual SEO work per site, at a fraction of the cost of a team or retainer.",
-  },
-];
-
-export const outcomeFeatures: ProductFeature[] = [
-  {
-    title: "Stay visible in AI search results",
-    description:
-      "Get cited and recommended inside ChatGPT, Perplexity, and Google AI Overviews — not just ranked in classic search.",
-  },
-  {
-    title: "Cut manual audit time to zero",
-    description:
-      "Technical SEO issues are found and prioritized automatically, every day, without anyone running a manual crawl.",
-  },
-  {
-    title: "Publish content that actually ranks",
-    description:
-      "AI-generated recommendations tell you exactly what to fix and why, in plain language your team can act on immediately.",
-  },
-  {
-    title: "Manage every client from one place",
-    description:
-      "Multi-tenant workspaces let agencies run multiple client sites from a single login, with reports that carry their own brand.",
-  },
-  {
-    title: "Prove ROI to stakeholders",
-    description:
-      "White-label, automated reports show search and AI-answer visibility side by side, ready to share on a schedule.",
-  },
-  {
-    title: "Keep full control over what changes",
-    description:
-      "Every recommendation is reviewed and approved by your team before anything publishes — automation without losing oversight.",
   },
 ];
 
@@ -355,6 +278,47 @@ export const pricingTiers: PricingTier[] = [
     highlighted: false,
     customPricing: true,
   },
+];
+
+export const leadManagementPricingTiers: LeadManagementPricingTier[] = [
+  {
+    slug: "small",
+    name: "Small",
+    price: 2999,
+    description: "For a single location that needs its WhatsApp inbox handled around the clock.",
+    features: ["WhatsApp AI agent", "Booking + CRM", "1 staff seat"],
+    highlighted: false,
+  },
+  {
+    slug: "medium",
+    name: "Medium",
+    price: 5999,
+    description: "For teams ready to bring Instagram and Messenger into the same AI-handled inbox.",
+    features: ["Everything in Small", "Instagram DM + Messenger", "5 staff seats"],
+    highlighted: true,
+  },
+  {
+    slug: "high",
+    name: "High",
+    price: 9999,
+    description: "For growing teams that need priority support and no seat limits.",
+    features: ["Everything in Medium", "Priority support", "Unlimited staff seats"],
+    highlighted: false,
+  },
+];
+
+export const leadManagementHighlights: string[] = [
+  "One Meta Business Login connects WhatsApp, Messenger & Instagram",
+  "Instant AI replies to every lead, 24/7 — nights, weekends, holidays",
+  "Books appointments and qualifies leads inside the conversation",
+  "Staff can take over anytime — the AI auto-resumes if they go quiet",
+];
+
+export const flagshipHighlights: string[] = [
+  "AI visibility tracking across Google and AI answer engines",
+  "Automated technical SEO audits, prioritized by impact",
+  "Multi-tenant workspaces built for agencies from day one",
+  "White-label client reporting on a schedule",
 ];
 
 export const faqItems: FAQItem[] = [

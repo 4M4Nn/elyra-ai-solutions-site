@@ -63,6 +63,17 @@ export interface TrustedCompany {
   name: string;
 }
 
+export type LeadManagementPlanSlug = "small" | "medium" | "high";
+
+export interface LeadManagementPricingTier {
+  slug: LeadManagementPlanSlug;
+  name: string;
+  price: number;
+  description: string;
+  features: string[];
+  highlighted: boolean;
+}
+
 export interface ContactFormValues {
   name: string;
   email: string;

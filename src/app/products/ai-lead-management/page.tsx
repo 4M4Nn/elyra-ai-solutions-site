@@ -7,7 +7,7 @@ import { HowItWorksSteps } from "@/components/products/HowItWorksSteps";
 import { FAQAccordion } from "@/components/pricing/FAQAccordion";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { leadManagementAppUrl, products } from "@/lib/data";
+import { leadManagementAppUrl, leadManagementPricingTiers, products } from "@/lib/data";
 import type { FAQItem, HowItWorksStep, ProductFeature } from "@/types";
 
 const product = products.find((item) => item.slug === "ai-lead-management")!;
@@ -93,43 +93,7 @@ const howItWorks: HowItWorksStep[] = [
   },
 ];
 
-type LeadManagementPlanSlug = "small" | "medium" | "high";
-
-interface LeadManagementPricingTier {
-  slug: LeadManagementPlanSlug;
-  name: string;
-  price: number;
-  description: string;
-  features: string[];
-  highlighted: boolean;
-}
-
-const pricingTiers: LeadManagementPricingTier[] = [
-  {
-    slug: "small",
-    name: "Small",
-    price: 2999,
-    description: "For a single location that needs its WhatsApp inbox handled around the clock.",
-    features: ["WhatsApp AI agent", "Booking + CRM", "1 staff seat"],
-    highlighted: false,
-  },
-  {
-    slug: "medium",
-    name: "Medium",
-    price: 5999,
-    description: "For teams ready to bring Instagram and Messenger into the same AI-handled inbox.",
-    features: ["Everything in Small", "Instagram DM + Messenger", "5 staff seats"],
-    highlighted: true,
-  },
-  {
-    slug: "high",
-    name: "High",
-    price: 9999,
-    description: "For growing teams that need priority support and no seat limits.",
-    features: ["Everything in Medium", "Priority support", "Unlimited staff seats"],
-    highlighted: false,
-  },
-];
+const pricingTiers = leadManagementPricingTiers;
 
 const faqItems: FAQItem[] = [
   {

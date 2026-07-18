@@ -2,37 +2,41 @@ import type { Metadata } from "next";
 
 import { Hero } from "@/components/sections/Hero";
 import { FreeAuditWidget } from "@/components/sections/FreeAuditWidget";
-import { ProblemSection } from "@/components/sections/ProblemSection";
-import { SolutionSection } from "@/components/sections/SolutionSection";
-import { DemoVideoSection } from "@/components/sections/DemoVideoSection";
-import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
-import { CoreFeaturesSection } from "@/components/sections/CoreFeaturesSection";
+import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
 import { WhyElyra } from "@/components/sections/WhyElyra";
 import { AboutUsSection } from "@/components/sections/AboutUsSection";
 import { TrustedBy } from "@/components/sections/TrustedBy";
 import { PricingHighlight } from "@/components/sections/PricingHighlight";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { CTABand } from "@/components/sections/CTABand";
-import { company, faqItems, pricingTiers, products, siteUrl } from "@/lib/data";
+import {
+  company,
+  faqItems,
+  leadManagementPricingTiers,
+  pricingTiers,
+  products,
+  siteUrl,
+} from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "AI SEO + AEO Agent — 14-Day Free Trial | Elyra AI Solutions",
+  title: "2 Live AI Agents — SEO+AEO & 24/7 Lead Response | Elyra AI Solutions",
   description:
-    "Stop losing customers to competitors who show up first. Elyra AI automates your SEO and Answer Engine Optimization across Google and AI answer engines like ChatGPT. Start your 14-day free trial — no card required.",
+    "Elyra AI Solutions runs two live AI agents: one that keeps you visible in Google and AI answers, and one that answers every WhatsApp, Messenger, and Instagram lead 24/7. Explore both — free trial and live demos available.",
   keywords: [
     "AI SEO agent",
     "AEO agent",
+    "AI lead response",
+    "WhatsApp AI agent",
     "answer engine optimization software",
     "AI visibility tracking",
     "multi-tenant SEO platform for agencies",
-    "SEO automation software",
-    "14-day free trial SEO tool",
     "Elyra AI Solutions",
   ],
   alternates: { canonical: siteUrl },
 };
 
-const flagshipProduct = products.find((item) => item.slug === "seo-aeo-agent")!;
+const seoAgent = products.find((item) => item.slug === "seo-aeo-agent")!;
+const leadAgent = products.find((item) => item.slug === "ai-lead-management")!;
 
 function buildStructuredData() {
   const organization = {
@@ -43,12 +47,12 @@ function buildStructuredData() {
     description: company.description,
   };
 
-  const softwareApplication = {
+  const seoApplication = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: flagshipProduct.name,
+    name: seoAgent.name,
     url: `${siteUrl}/products/seo-aeo-agent`,
-    description: flagshipProduct.description,
+    description: seoAgent.description,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: pricingTiers
@@ -60,6 +64,23 @@ function buildStructuredData() {
         priceCurrency: "INR",
         description: tier.description,
       })),
+  };
+
+  const leadApplication = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: leadAgent.name,
+    url: `${siteUrl}/products/ai-lead-management`,
+    description: leadAgent.description,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: leadManagementPricingTiers.map((tier) => ({
+      "@type": "Offer",
+      name: tier.name,
+      price: tier.price,
+      priceCurrency: "INR",
+      description: tier.description,
+    })),
   };
 
   const faqPage = {
@@ -75,7 +96,7 @@ function buildStructuredData() {
     })),
   };
 
-  return [organization, softwareApplication, faqPage];
+  return [organization, seoApplication, leadApplication, faqPage];
 }
 
 export default function Home() {
@@ -85,7 +106,7 @@ export default function Home() {
     <>
       {schemas.map((schema, index) => (
         <script
-          key={schema["@type"] as string}
+          key={`${schema["@type"] as string}-${index}`}
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
@@ -94,11 +115,7 @@ export default function Home() {
       ))}
       <Hero />
       <FreeAuditWidget />
-      <ProblemSection />
-      <SolutionSection />
-      <DemoVideoSection />
-      <HowItWorksSection />
-      <CoreFeaturesSection />
+      <ProductsShowcase />
       <WhyElyra />
       <AboutUsSection />
       <TrustedBy />
