@@ -29,6 +29,7 @@ import { useAuthUser } from "@/hooks/useAuthUser";
 
 const primaryLinks = [
   { label: "Pricing", href: "/pricing" },
+  { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

@@ -8,6 +8,8 @@ import type {
   ProductFeature,
   ProductSummary,
   TrustedCompany,
+  WebsiteDevPackage,
+  WebsiteDevServiceType,
 } from "@/types";
 
 export const siteUrl = "https://elyra-ai-solutions-site.vercel.app";
@@ -45,6 +47,7 @@ export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -284,7 +287,7 @@ export const leadManagementPricingTiers: LeadManagementPricingTier[] = [
   {
     slug: "small",
     name: "Small",
-    price: 2999,
+    price: 5000,
     description: "For a single location that needs its WhatsApp inbox handled around the clock.",
     features: ["WhatsApp AI agent", "Booking + CRM", "1 staff seat"],
     highlighted: false,
@@ -292,7 +295,7 @@ export const leadManagementPricingTiers: LeadManagementPricingTier[] = [
   {
     slug: "medium",
     name: "Medium",
-    price: 5999,
+    price: 10000,
     description: "For teams ready to bring Instagram and Messenger into the same AI-handled inbox.",
     features: ["Everything in Small", "Instagram DM + Messenger", "5 staff seats"],
     highlighted: true,
@@ -300,7 +303,7 @@ export const leadManagementPricingTiers: LeadManagementPricingTier[] = [
   {
     slug: "high",
     name: "High",
-    price: 9999,
+    price: 15000,
     description: "For growing teams that need priority support and no seat limits.",
     features: ["Everything in Medium", "Priority support", "Unlimited staff seats"],
     highlighted: false,
@@ -333,7 +336,7 @@ export const leadManagementFaqItems: FAQItem[] = [
   {
     question: "How much does it cost?",
     answer:
-      "Small is ₹2,999/month (WhatsApp only), Medium is ₹5,999/month (adds Messenger and Instagram, 5 staff seats), and High is ₹9,999/month (unlimited staff seats and priority support).",
+      "Small is ₹5,000/month (WhatsApp only), Medium is ₹10,000/month (adds Messenger and Instagram, 5 staff seats), and High is ₹15,000/month (unlimited staff seats and priority support).",
   },
   {
     question: "Can I switch plans or cancel?",
@@ -431,3 +434,80 @@ export const missionStatement =
 
 export const roadmapNote =
   "Elyra SEO+AEO Agent and Elyra AI Lead Management are both live today. Elyra Cybersecurity Agent and Elyra ERP for Institutes are both in design and development, informed directly by conversations with prospective customers in security and education.";
+
+// Website development service — a separate offering from the AI agent products above.
+// Elyra's team builds and ships websites directly, using the same AI-accelerated workflow.
+export const websiteDevService = {
+  name: "AI Website Development",
+  tagline: "Production-ready websites, built fast — prototype tomorrow, live in 3 days.",
+  description:
+    "Beyond our AI agent products, the Elyra team designs and builds websites directly — from clean brochure sites to fully custom, cinematic scroll-animated experiences — using the same AI-accelerated workflow that powers our own products.",
+  startingPrice: 6000,
+  deliveryDays: 3,
+  prototypeDays: 1,
+};
+
+export const websiteDevUsps: string[] = [
+  `Starting at ₹${websiteDevService.startingPrice.toLocaleString("en-IN")}`,
+  `${websiteDevService.deliveryDays}-day delivery`,
+  "Next-day prototype",
+];
+
+export const websiteDevServiceTypes: WebsiteDevServiceType[] = [
+  {
+    title: "Best Scroll Animation Websites",
+    description:
+      "Cinematic, scroll-driven experiences with premium motion design — the same craft behind this very site.",
+  },
+  {
+    title: "Normal Websites",
+    description: "Clean, fast, professional brochure and business websites, built without unnecessary complexity.",
+  },
+  {
+    title: "Custom Websites",
+    description: "Bespoke builds for teams with specific features, integrations, or design requirements.",
+  },
+];
+
+export const websiteDevPackages: WebsiteDevPackage[] = [
+  {
+    slug: "basic",
+    name: "Basic Website",
+    price: 6000,
+    description: "A clean, professional website for businesses that need to be online fast.",
+    features: [
+      "Up to 5 pages",
+      "Mobile-first responsive design",
+      "Contact form",
+      "Next-day prototype",
+      "3-day delivery",
+    ],
+    highlighted: false,
+  },
+  {
+    slug: "scroll-animated",
+    name: "Scroll Animated Website",
+    price: 8000,
+    description: "A cinematic, scroll-driven site with premium motion — built to impress from the first scroll.",
+    features: [
+      "Everything in Basic",
+      "Scroll-triggered reveal animations",
+      "Custom typography & motion design",
+      "Up to 8 pages",
+    ],
+    highlighted: true,
+  },
+  {
+    slug: "custom",
+    name: "Custom Website",
+    price: 10000,
+    description: "A fully custom build for teams with specific functionality or design requirements.",
+    features: [
+      "Everything in Scroll Animated",
+      "Custom features & integrations",
+      "Unlimited pages",
+      "Dedicated revision round",
+    ],
+    highlighted: false,
+  },
+];

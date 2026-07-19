@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { FreeAuditWidget } from "@/components/sections/FreeAuditWidget";
 import { ProductsShowcase } from "@/components/sections/ProductsShowcase";
+import { WebsiteDevService } from "@/components/sections/WebsiteDevService";
 import { WhyElyra } from "@/components/sections/WhyElyra";
 import { AboutUsSection } from "@/components/sections/AboutUsSection";
 import { TrustedBy } from "@/components/sections/TrustedBy";
@@ -116,6 +117,7 @@ export default function Home() {
       <Hero />
       <FreeAuditWidget />
       <ProductsShowcase />
+      <WebsiteDevService />
       <WhyElyra />
       <AboutUsSection />
       <TrustedBy />

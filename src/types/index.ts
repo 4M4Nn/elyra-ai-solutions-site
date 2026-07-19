@@ -74,6 +74,22 @@ export interface LeadManagementPricingTier {
   highlighted: boolean;
 }
 
+export type WebsiteDevPackageSlug = "basic" | "scroll-animated" | "custom";
+
+export interface WebsiteDevPackage {
+  slug: WebsiteDevPackageSlug;
+  name: string;
+  price: number;
+  description: string;
+  features: string[];
+  highlighted: boolean;
+}
+
+export interface WebsiteDevServiceType {
+  title: string;
+  description: string;
+}
+
 export interface ContactFormValues {
   name: string;
   email: string;

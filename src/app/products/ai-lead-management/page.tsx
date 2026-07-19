@@ -114,7 +114,7 @@ const faqItems: FAQItem[] = [
   {
     question: "How much does it cost?",
     answer:
-      "Small is ₹2,999/month (WhatsApp only), Medium is ₹5,999/month (adds Messenger and Instagram, 5 staff seats), and High is ₹9,999/month (unlimited staff seats and priority support).",
+      "Small is ₹5,000/month (WhatsApp only), Medium is ₹10,000/month (adds Messenger and Instagram, 5 staff seats), and High is ₹15,000/month (unlimited staff seats and priority support).",
   },
   {
     question: "What kind of businesses is this built for?",
