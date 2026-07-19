@@ -46,6 +46,15 @@ function buildStructuredData() {
     name: company.name,
     url: siteUrl,
     description: company.description,
+    email: company.email,
+    telephone: company.phone,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kochi",
+      addressRegion: "Kerala",
+      addressCountry: "IN",
+      streetAddress: "Chembumukku",
+    },
   };
 
   const seoApplication = {

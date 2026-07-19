@@ -20,9 +20,10 @@ export const company = {
   tagline: "AI agents that run the work, not just answer questions.",
   description:
     "Elyra AI Solutions builds production-grade AI agent products for growing businesses — starting with SEO and Answer Engine Optimization and 24/7 AI lead response, and expanding into cybersecurity and education technology.",
-  email: "hello@elyra.ai",
+  email: "elyraaisolution@gmail.com",
+  phone: "+91 97467 33133",
   foundingYear: 2026,
-  address: "Remote-first · Serving clients worldwide",
+  address: "Chembumukku, Kochi, Kerala, India",
 };
 
 // The deployed SEO+AEO Agent app (login / dashboard).

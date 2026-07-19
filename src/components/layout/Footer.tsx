@@ -85,6 +85,14 @@ export function Footer() {
                   {company.email}
                 </a>
               </li>
+              <li>
+                <a
+                  href={`tel:${company.phone.replace(/\s+/g, "")}`}
+                  className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  {company.phone}
+                </a>
+              </li>
             </ul>
           </div>
         </div>

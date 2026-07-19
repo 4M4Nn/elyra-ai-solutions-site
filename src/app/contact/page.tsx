@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 import { ContactForm } from "@/components/contact/ContactForm";
 import { company } from "@/lib/data";
@@ -28,6 +28,14 @@ export default function ContactPage() {
               </span>
               <a href={`mailto:${company.email}`} className="hover:underline">
                 {company.email}
+              </a>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-foreground">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Phone className="h-4 w-4" />
+              </span>
+              <a href={`tel:${company.phone.replace(/\s+/g, "")}`} className="hover:underline">
+                {company.phone}
               </a>
             </div>
             <div className="flex items-center gap-3 text-sm text-foreground">
