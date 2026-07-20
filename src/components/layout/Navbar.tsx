@@ -21,9 +21,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { appUrl, company, products } from "@/lib/data";
+import { appUrl, company, leadManagementAppUrl, products } from "@/lib/data";
 import { clearAuthUser } from "@/lib/auth";
 import { useAuthUser } from "@/hooks/useAuthUser";
 
@@ -33,6 +34,21 @@ const primaryLinks = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
+
+const accountLinks = {
+  login: [
+    { label: "Elyra SEO+AEO Agent", href: "/login", external: false },
+    { label: "Elyra AI Lead Management", href: `${leadManagementAppUrl}/login`, external: true },
+  ],
+  getStarted: [
+    { label: "Elyra SEO+AEO Agent", sub: "Start 14-day free trial", href: "/signup", external: false },
+    { label: "Elyra AI Lead Management", sub: "Subscribe now", href: `${leadManagementAppUrl}/subscribe`, external: true },
+  ],
+  dashboard: [
+    { label: "Elyra SEO+AEO Agent", href: appUrl, external: true },
+    { label: "Elyra AI Lead Management", href: `${leadManagementAppUrl}/dashboard`, external: true },
+  ],
+};
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -111,32 +127,116 @@ export function Navbar() {
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
+
+              {user ? (
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Dashboard</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[280px] gap-1 p-3">
+                      {accountLinks.dashboard.map((item) => (
+                        <li key={item.label}>
+                          <NavigationMenuLink asChild>
+                            <a
+                              href={item.href}
+                              target={item.external ? "_blank" : undefined}
+                              rel={item.external ? "noreferrer noopener" : undefined}
+                              className="block rounded-md p-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                            >
+                              {item.label}
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Login</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[280px] gap-1 p-3">
+                      {accountLinks.login.map((item) => (
+                        <li key={item.label}>
+                          <NavigationMenuLink asChild>
+                            {item.external ? (
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                className="block rounded-md p-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                              >
+                                {item.label}
+                              </a>
+                            ) : (
+                              <Link
+                                href={item.href}
+                                className="block rounded-md p-3 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                              >
+                                {item.label}
+                              </Link>
+                            )}
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              )}
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
           {user ? (
-            <>
-              <Button asChild variant="ghost">
-                <a href={appUrl}>Dashboard</a>
-              </Button>
-              <Button variant="outline" onClick={() => clearAuthUser()}>
-                Logout
-              </Button>
-            </>
+            <Button variant="outline" onClick={() => clearAuthUser()}>
+              Logout
+            </Button>
           ) : (
-            <>
-              <Button asChild variant="ghost">
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button asChild variant="default">
-                <Link href="/signup">
-                  Sign up
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </>
+            <div className="relative">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground focus:bg-primary/90 focus:text-primary-foreground data-[state=open]:bg-primary/90 data-[state=open]:text-primary-foreground"
+                      )}
+                    >
+                      Get started
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-[280px] gap-1 p-3">
+                        {accountLinks.getStarted.map((item) => (
+                          <li key={item.label}>
+                            <NavigationMenuLink asChild>
+                              {item.external ? (
+                                <a
+                                  href={item.href}
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                                  className="block rounded-md p-3 transition-colors hover:bg-accent"
+                                >
+                                  <span className="text-sm font-medium text-foreground">{item.label}</span>
+                                  <p className="mt-0.5 text-xs text-muted-foreground">{item.sub}</p>
+                                </a>
+                              ) : (
+                                <Link
+                                  href={item.href}
+                                  className="block rounded-md p-3 transition-colors hover:bg-accent"
+                                >
+                                  <span className="text-sm font-medium text-foreground">{item.label}</span>
+                                  <p className="mt-0.5 text-xs text-muted-foreground">{item.sub}</p>
+                                </Link>
+                              )}
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
           )}
         </div>
 
@@ -150,7 +250,7 @@ export function Navbar() {
             <SheetHeader>
               <SheetTitle className="font-heading">{company.shortName}</SheetTitle>
             </SheetHeader>
-            <nav className="mt-6 flex flex-1 flex-col gap-1">
+            <nav className="mt-6 flex flex-1 flex-col gap-1 overflow-y-auto">
               <p className="px-1 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Products
               </p>
@@ -175,15 +275,48 @@ export function Navbar() {
                   </Link>
                 </SheetClose>
               ))}
+
+              {!user && (
+                <>
+                  <div className="my-3 h-px bg-border" />
+                  <p className="px-1 pb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Login
+                  </p>
+                  {accountLinks.login.map((item) =>
+                    item.external ? (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-accent"
+                        onClick={() => setOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <SheetClose asChild key={item.label}>
+                        <Link href={item.href} className="rounded-md px-3 py-2 text-sm font-medium text-foreground hover:bg-accent">
+                          {item.label}
+                        </Link>
+                      </SheetClose>
+                    )
+                  )}
+                </>
+              )}
             </nav>
             <div className="mt-4 flex flex-col gap-2">
               {user ? (
                 <>
-                  <SheetClose asChild>
-                    <Button asChild variant="outline" className="w-full">
-                      <a href={appUrl}>Dashboard</a>
-                    </Button>
-                  </SheetClose>
+                  {accountLinks.dashboard.map((item) => (
+                    <SheetClose asChild key={item.label}>
+                      <Button asChild variant="outline" className="w-full">
+                        <a href={item.href} target={item.external ? "_blank" : undefined} rel={item.external ? "noreferrer noopener" : undefined}>
+                          {item.label}
+                        </a>
+                      </Button>
+                    </SheetClose>
+                  ))}
                   <SheetClose asChild>
                     <Button className="w-full" onClick={() => clearAuthUser()}>
                       Logout
@@ -191,21 +324,20 @@ export function Navbar() {
                   </SheetClose>
                 </>
               ) : (
-                <>
-                  <SheetClose asChild>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/login">Login</Link>
+                accountLinks.getStarted.map((item, index) => (
+                  <SheetClose asChild key={item.label}>
+                    <Button asChild variant={index === 0 ? "default" : "outline"} className="w-full">
+                      <a
+                        href={item.href}
+                        target={item.external ? "_blank" : undefined}
+                        rel={item.external ? "noreferrer noopener" : undefined}
+                      >
+                        {item.label}
+                        {index === 0 && <ArrowRight className="h-4 w-4" />}
+                      </a>
                     </Button>
                   </SheetClose>
-                  <SheetClose asChild>
-                    <Button asChild className="w-full">
-                      <Link href="/signup">
-                        Sign up
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
-                  </SheetClose>
-                </>
+                ))
               )}
             </div>
           </SheetContent>
